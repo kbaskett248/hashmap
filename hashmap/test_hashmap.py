@@ -51,22 +51,39 @@ class TestHashMap(unittest.TestCase):
         self.assertEqual(hash_map.delete("Nissan"), "GT-R")
         self.assertNotIn("Nissan", hash_map)
 
-    def test_set_item(self):
+    def test_delete_missing(self):
+        hash_map = HashMap(Chevrolet="Corvette")
+        self.assertEqual(hash_map.delete("Chevrolet"), "Corvette")
+        self.assertNotIn("Chevrolet", hash_map)
+
+    def test_setitem(self):
         hash_map = HashMap()
         hash_map["Aston Martin"] = "Vanquish"
 
         self.assertEqual(hash_map.get("Aston Martin"), "Vanquish")
 
-    def test_get_item(self):
+    def test_getitem(self):
         hash_map = HashMap(McLaren="P1")
 
         self.assertEqual(hash_map["McLaren"], "P1")
 
-    def test_get_item_missing(self):
+    def test_getitem_missing(self):
         hash_map = HashMap()
 
         with self.assertRaises(KeyError):
             hash_map["Fiat"]
+
+    def test_delitem(self):
+        hash_map = HashMap(Tesla="Model S")
+
+        del hash_map["Tesla"]
+        self.assertNotIn("Tesla", hash_map)
+
+    def test_delitem_missing(self):
+        hash_map = HashMap()
+
+        with self.assertRaises(KeyError):
+            del hash_map["Hennessey"]
 
 
 if __name__ == "__main__":
