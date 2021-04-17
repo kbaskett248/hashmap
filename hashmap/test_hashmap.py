@@ -57,6 +57,17 @@ class TestHashMap(unittest.TestCase):
 
         self.assertEqual(hash_map.get("Aston Martin"), "Vanquish")
 
+    def test_get_item(self):
+        hash_map = HashMap(McLaren="P1")
+
+        self.assertEqual(hash_map["McLaren"], "P1")
+
+    def test_get_item_missing(self):
+        hash_map = HashMap()
+
+        with self.assertRaises(KeyError):
+            hash_map["Fiat"]
+
 
 if __name__ == "__main__":
     unittest.main()
