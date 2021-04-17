@@ -43,7 +43,7 @@ class HashMap(collections.abc.MutableMapping):
 
     def _expand(self):
         """Double the number of buckets available in the hashmap"""
-        old_pairs = self._buckets
+        old_pairs = list(iter(self))
         self._size_factor += 1
         self._num_buckets = 2 ** self._size_factor - 1
         self._buckets = [None for _ in range(self._num_buckets)]
@@ -95,7 +95,7 @@ class HashMap(collections.abc.MutableMapping):
         """
         pair = self._buckets[self._get_index(key)]
         if (pair is None) or (pair.key != key):
-            if default == _SENTINEL_VALUE:
+            if default is _SENTINEL_VALUE:
                 raise KeyError(f"key does not exist: {key}")
             else:
                 return default
@@ -115,12 +115,13 @@ class HashMap(collections.abc.MutableMapping):
         Returns:
             typing.Any: The value associated with the given key.
         """
-        pair = self._buckets[self._get_index(key)]
+        index = self._get_index(key)
+        pair = self._buckets[index]
         if (pair is None) or (pair.key != key):
             raise KeyError(f"key does not exist: {key}")
         else:
             self._length -= 1
-            self._buckets[self._get_index(key)] = None
+            self._buckets[index] = None
             return pair.value
 
     def __setitem__(self, key: typing.Hashable, value: typing.Any) -> None:
