@@ -1,4 +1,4 @@
-__version__ = "0.1.0"
+__version__ = "1.0.0"
 
 import typing
 import collections.abc
@@ -78,11 +78,16 @@ class HashMap(collections.abc.MutableMapping):
         """Return the value for the given key.
 
         If the key isn't present in the HashMap, return a default value.
+        If no default value was specified, raise a KeyError.
 
         Args:
             key (typing.Hashable): Any hashable value
             default (typing.Any, optional): A value to return if the given key
-                doesn't exist. Defaults to None.
+                doesn't exist.
+
+        Raises:
+            KeyError: A KeyError is raised if the specified key does not exist
+                in the HashMap and no default was specified.
 
         Returns:
             typing.Any: The value from the HashMap for the given key, or the
@@ -119,20 +124,65 @@ class HashMap(collections.abc.MutableMapping):
             return pair.value
 
     def __setitem__(self, key: typing.Hashable, value: typing.Any) -> None:
+        """Set the value for key in the HashMap.
+
+        Args:
+            key (typing.Hashable): Any hashable value
+            value (typing.Any): The value to associate with the given key
+        """
         self.set(key, value)
 
     def __getitem__(self, key: typing.Hashable) -> typing.Any:
+        """Return the value for the given key.
+
+        If the key isn't present in the HashMap, raise a KeyError.
+
+        Args:
+            key (typing.Hashable): Any hashable value
+
+        Raises:
+            KeyError: A KeyError is raised if the specified key does not exist
+                in the HashMap.
+
+        Returns:
+            typing.Any: The value from the HashMap for the given key
+        """
         return self.get(key)
 
     def __delitem__(self, key: typing.Hashable) -> None:
+        """Delete the value for the given key from the HashMap.
+
+        Args:
+            key (typing.Hashable): Any hashable value
+
+        Raises:
+            KeyError: A KeyError is raised if the specified key does not exist
+                in the HashMap.
+        """
         self.delete(key)
 
     def __iter__(self) -> typing.Iterator[typing.Tuple[typing.Hashable, typing.Any]]:
+        """Return an iterator to iterate over the key-value pairs.
+
+        Returns:
+            typing.Iterator[typing.Tuple[typing.Hashable, typing.Any]]: An iterator
+                over the key-value pairs in the HashMap
+        """
         return (pair for pair in self._buckets if pair is not None)
 
     def __len__(self) -> int:
+        """Return the number of items in the HashMap.
+
+        Returns:
+            int: A count of the number of items in the HashMap
+        """
         return self._length
 
     def __str__(self) -> str:
+        """Return a string representation of the HashMap.
+
+        Returns:
+            str: A string representation of the HashMap
+        """
         contents = ", ".join(sorted(f"{key!r}: {value!r}" for key, value in self))
         return f"HashMap({contents})"
