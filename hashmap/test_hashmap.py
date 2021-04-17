@@ -26,6 +26,14 @@ class TestHashMap(unittest.TestCase):
         self.assertEqual(hash_map.get("Toyota"), "Celica")
         self.assertEqual(hash_map.get("Hyundai"), "Elantra GT")
 
+    def test_expansion(self):
+        hash_map = HashMap()
+        for j in range(2200):
+            hash_map[j] = str(j)
+
+        self.assertEqual(len(hash_map), 2200)
+        self.assertIn(1234, hash_map)
+
     def test_set_and_get(self):
         hash_map = HashMap()
         hash_map.set("Ford", "Mustang")

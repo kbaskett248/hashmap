@@ -47,6 +47,7 @@ class HashMap(collections.abc.MutableMapping):
         self.size_factor += 1
         self.num_buckets = 2 ** self.size_factor - 1
         self.buckets = [None for _ in range(self.num_buckets)]
+        self.length = 0
 
         for pair in old_pairs:
             if pair is None:
