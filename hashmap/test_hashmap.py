@@ -10,14 +10,22 @@ class TestHashMap(unittest.TestCase):
         self.assertIsNotNone(hash_map)
 
     def test_create_from_list(self):
-        hash_map = HashMap([("a", 1), ("b", 2), ("c", 3)])
+        l = [("Mazda", "Miata"), ("Toyota", "2000 GT"), ("Subaru", "WRX")]
+        hash_map = HashMap(l)
         self.assertIsNotNone(hash_map)
+
+        for key, value in l:
+            self.assertEqual(hash_map.get(key), value)
 
     def test_create_from_kwargs(self):
-        hash_map = HashMap(a=1, b=2, c=3)
+        hash_map = HashMap(Mazda="Miata", Toyota="Celica", Hyundai="Elantra GT")
         self.assertIsNotNone(hash_map)
 
-    def test_set(self):
+        self.assertEqual(hash_map.get("Mazda"), "Miata")
+        self.assertEqual(hash_map.get("Toyota"), "Celica")
+        self.assertEqual(hash_map.get("Hyundai"), "Elantra GT")
+
+    def test_set_and_get(self):
         hash_map = HashMap()
         hash_map.set("Ford", "Mustang")
 

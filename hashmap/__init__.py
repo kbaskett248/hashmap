@@ -21,6 +21,13 @@ class HashMap(collections.abc.MutableMapping):
         self._expand()
         self.length = 0
 
+        for iterable in args:
+            for key, value in iterable:
+                self.set(key, value)
+
+        for key, value in kwargs.items():
+            self.set(key, value)
+
     def _get_index(self, key: typing.Hashable) -> int:
         """Convert a key to the corresponding index in buckets.
 
