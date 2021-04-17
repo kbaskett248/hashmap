@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hashmap"
-version = "0.1.0"
+version = "1.0.0"
 description = "An implementation of a hashmap"
 authors = ["Kenny Baskett <kbaskett248@gmail.com>"]
 
