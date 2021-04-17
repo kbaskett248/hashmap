@@ -51,6 +51,12 @@ class TestHashMap(unittest.TestCase):
         self.assertEqual(hash_map.delete("Nissan"), "GT-R")
         self.assertNotIn("Nissan", hash_map)
 
+    def test_set_item(self):
+        hash_map = HashMap()
+        hash_map["Aston Martin"] = "Vanquish"
+
+        self.assertEqual(hash_map.get("Aston Martin"), "Vanquish")
+
 
 if __name__ == "__main__":
     unittest.main()
