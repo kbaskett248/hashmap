@@ -43,7 +43,7 @@ class HashMap(collections.abc.MutableMapping):
         """Double the number of buckets available in the hashmap"""
         old_pairs = self.buckets
         self.size_factor += 1
-        self.num_buckets = 2 ^ self.size_factor - 1
+        self.num_buckets = 2 ** self.size_factor - 1
         self.buckets = [None for _ in range(self.num_buckets)]
 
         for pair in old_pairs:
