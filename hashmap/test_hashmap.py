@@ -85,6 +85,16 @@ class TestHashMap(unittest.TestCase):
         with self.assertRaises(KeyError):
             del hash_map["Hennessey"]
 
+    def test_len(self):
+        hash_map = HashMap()
+        self.assertEqual(len(hash_map), 0)
+
+        hash_map["Volkswagen"] = "GTI"
+        self.assertEqual(len(hash_map), 1)
+
+        del hash_map["Volkswagen"]
+        self.assertEqual(len(hash_map), 0)
+
 
 if __name__ == "__main__":
     unittest.main()
