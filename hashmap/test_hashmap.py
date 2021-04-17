@@ -1,5 +1,6 @@
 import unittest
 from . import HashMap
+import hashmap
 
 
 class TestHashMap(unittest.TestCase):
@@ -35,6 +36,14 @@ class TestHashMap(unittest.TestCase):
         hash_map.set("Ford", "Focus")
         self.assertIn("Ford", hash_map)
         self.assertEqual(hash_map.get("Ford"), "Focus")
+
+    def test_get_missing(self):
+        hash_map = HashMap()
+        self.assertIsNone(hash_map.get("Ferarri"))
+
+    def test_get_default(self):
+        hash_map = HashMap()
+        self.assertEqual(hash_map.get("Ferarri", "Testarossa"), "Testarossa")
 
 
 if __name__ == "__main__":
