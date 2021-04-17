@@ -132,3 +132,7 @@ class HashMap(collections.abc.MutableMapping):
 
     def __len__(self) -> int:
         return self._length
+
+    def __str__(self) -> str:
+        contents = ", ".join(sorted(f"{key!r}: {value!r}" for key, value in self))
+        return f"HashMap({contents})"

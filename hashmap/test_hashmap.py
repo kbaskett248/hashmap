@@ -1,6 +1,5 @@
 import unittest
 from . import HashMap
-import hashmap
 
 
 class TestHashMap(unittest.TestCase):
@@ -110,6 +109,12 @@ class TestHashMap(unittest.TestCase):
         hash_map = HashMap(cars)
 
         self.assertEqual(set((key, value) for key, value in hash_map), cars)
+
+    def test_str(self):
+        hash_map = HashMap(Audi="Quattro", Mercedes="S Class")
+        self.assertEqual(
+            str(hash_map), "HashMap('Audi': 'Quattro', 'Mercedes': 'S Class')"
+        )
 
 
 if __name__ == "__main__":
