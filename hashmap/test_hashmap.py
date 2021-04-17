@@ -39,11 +39,12 @@ class TestHashMap(unittest.TestCase):
 
     def test_get_missing(self):
         hash_map = HashMap()
-        self.assertIsNone(hash_map.get("Ferarri"))
+        self.assertIsNone(hash_map.get("Ferrari"))
 
     def test_get_default(self):
         hash_map = HashMap()
-        self.assertEqual(hash_map.get("Ferarri", "Testarossa"), "Testarossa")
+        self.assertEqual(hash_map.get("Ferrari", "Testarossa"), "Testarossa")
+
 
 
 if __name__ == "__main__":
