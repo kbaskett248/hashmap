@@ -3,6 +3,8 @@ __version__ = "0.1.0"
 import typing
 import collections.abc
 
+_SENTINEL_VALUE = object()
+
 
 class Pair(typing.NamedTuple):
     key: typing.Hashable
@@ -71,7 +73,7 @@ class HashMap(collections.abc.MutableMapping):
             else:
                 self._expand()
 
-    def get(self, key: typing.Hashable, default=None) -> typing.Any:
+    def get(self, key: typing.Hashable, default=_SENTINEL_VALUE) -> typing.Any:
         """Return the value for the given key.
 
         If the key isn't present in the HashMap, return a default value.
@@ -87,7 +89,10 @@ class HashMap(collections.abc.MutableMapping):
         """
         pair = self.buckets[self._get_index(key)]
         if (pair is None) or (pair.key != key):
-            return default
+            if default == _SENTINEL_VALUE:
+                raise KeyError(f"key does not exist: {key}")
+            else:
+                return default
         else:
             return pair.value
 
@@ -109,6 +114,7 @@ class HashMap(collections.abc.MutableMapping):
             raise KeyError(f"key does not exist: {key}")
         else:
             self.length -= 1
+            self.buckets[self._get_index(key)] = None
             return pair.value
 
     def __setitem__(self, key: typing.Hashable, value: typing.Any) -> None:

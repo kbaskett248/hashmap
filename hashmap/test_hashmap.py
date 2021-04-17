@@ -39,12 +39,17 @@ class TestHashMap(unittest.TestCase):
 
     def test_get_missing(self):
         hash_map = HashMap()
-        self.assertIsNone(hash_map.get("Ferrari"))
+        with self.assertRaises(KeyError):
+            hash_map.get("Ferrari")
 
     def test_get_default(self):
         hash_map = HashMap()
         self.assertEqual(hash_map.get("Ferrari", "Testarossa"), "Testarossa")
 
+    def test_delete(self):
+        hash_map = HashMap(Nissan="GT-R")
+        self.assertEqual(hash_map.delete("Nissan"), "GT-R")
+        self.assertNotIn("Nissan", hash_map)
 
 
 if __name__ == "__main__":
