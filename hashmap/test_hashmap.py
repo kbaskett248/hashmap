@@ -95,6 +95,14 @@ class TestHashMap(unittest.TestCase):
         del hash_map["Volkswagen"]
         self.assertEqual(len(hash_map), 0)
 
+    def test_iterable(self):
+        cars = set(
+            (("Chrysler", "Crossfire"), ("Dodge", "Viper"), ("Jeep", "Wrangler"))
+        )
+        hash_map = HashMap(cars)
+
+        self.assertEqual(set((key, value) for key, value in hash_map), cars)
+
 
 if __name__ == "__main__":
     unittest.main()
