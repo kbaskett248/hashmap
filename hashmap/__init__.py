@@ -73,10 +73,8 @@ class HashMap(collections.abc.MutableMapping):
         self._buckets = [None for _ in range(self._num_buckets)]
         self._length = 0
 
-        for pair in old_pairs:
-            if pair is None:
-                continue
-            self.set(pair.key, pair.value)
+        for key, value in old_pairs:
+            self.set(key, value)
 
     def set(self, key: typing.Hashable, value: typing.Any):
         """Set the value for key in the HashMap.
