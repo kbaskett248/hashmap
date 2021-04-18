@@ -209,3 +209,6 @@ class HashMap(collections.abc.MutableMapping):
         """
         contents = ", ".join(sorted(f"{key!r}: {value!r}" for key, value in self))
         return f"HashMap({contents})"
+
+
+__all__ = ["HashMap"]
