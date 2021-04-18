@@ -34,6 +34,18 @@ class HashMap(collections.abc.MutableMapping):
 
     Any hashable value may be used as the key, and it can point to any value.
 
+    You can create an empty HashMap by creating an instance with no arguments.
+    Ex. HashMap()
+
+    You can also create a HashMap with contents in two ways.
+    1. Pass a list of 2-item tuples, where the first item is the key and the
+       second is the value.
+       Ex. HashMap([("key1", 1), ("key2", 2)])
+
+    2. Use keyword arguments, where the keyword is used as a key, and its value
+       is used as the value.
+       Ex. HashMap(key1=1, key2=2)
+
     """
 
     _size_factor: int
