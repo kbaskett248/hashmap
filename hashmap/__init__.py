@@ -1,3 +1,21 @@
+"""This file contains a pure python implementation of a Hash Map.
+
+The HashMap is implemented as a list of buckets. Each bucket contains None or
+a key-value pair. The number of buckets is computed based on a size factor. 
+When the HashMap is initialized, the size factor is 10, and the number of 
+buckets is 2^10 - 1, or 1023.
+
+When a key-value pair is added to the HashMap, the key is hashed to an index in
+the bucket list. If the bucket is empty (it contains None), then the key-value
+pair is stored in the bucket. If the bucket is occupied, and the key coming in
+matches the existing key, then the value is replaced. Otherwise the bucket is
+occupied with a different key, indicating a hash conflict. In this case the 
+HashMap is expanded by increasing the size factor by 1, doubling the number of 
+buckets. All existing pairs are added to the list, and then the new pair is
+added.
+
+"""
+
 __version__ = "1.0.0"
 
 import typing
@@ -12,6 +30,12 @@ class Pair(typing.NamedTuple):
 
 
 class HashMap(collections.abc.MutableMapping):
+    """A Pure Python implementation of a HashMap.
+
+    Any hashable value may be used as the key, and it can point to any value.
+
+    """
+
     _size_factor: int
     _num_buckets: int
     _length: int
