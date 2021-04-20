@@ -66,6 +66,7 @@ class TestHashMap(unittest.TestCase):
     def test_delete(self):
         """Verify a value can be deleted."""
         hash_map = HashMap(Nissan="GT-R")
+        self.assertIn("Nissan", hash_map)
         self.assertEqual(hash_map.delete("Nissan"), "GT-R")
         self.assertNotIn("Nissan", hash_map)
 
